@@ -17,7 +17,7 @@ class Factbook:
         )
 
         self.keywords = []
-        self.units = None
+        self.units = []
 
     def add_keyword(self, keyword):
         self.keywords.append(keyword)
@@ -36,7 +36,7 @@ class Factbook:
         for keyword in self.keywords:
             if keyword == "flatten":
                 for x in result.keys():
-                    if type(result[x]) == dict:
+                    if type(result[x]) == dict and "text" in result[x]:
                         result[x] = result[x]["text"]
             else:
                 result = result.get(keyword, {})
@@ -46,6 +46,9 @@ class Factbook:
         return {key: value for key, value in result2}
 
     def _handle_units(self, key, value):
+        if type(value) != str:
+            return key, value
+
         for unit in self.units:
             if unit in value:
                 return f"{key} ({unit})", to_number(value.split(unit)[0])
@@ -59,6 +62,8 @@ class Factbook:
         data = []
 
         for filename in self.get_files():
+            if "meta" in filename:
+                continue
             result = self._get_for_short(filename)
 
             if len(result) > 0:

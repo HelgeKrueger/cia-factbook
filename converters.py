@@ -24,4 +24,7 @@ def to_number(value):
             value = value.split(postfix)[0]
             return float(value) * mult
 
-    return float(value)
+    try:
+        return float(value)
+    except:
+        return value
