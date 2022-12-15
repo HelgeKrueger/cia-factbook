@@ -22,7 +22,10 @@ def to_number(value):
     for postfix, mult in [("million", 1e6), ("billion", 1e9)]:
         if postfix in value:
             value = value.split(postfix)[0]
-            return float(value) * mult
+            try:
+                return float(value) * mult
+            except:
+                return None
 
     try:
         return float(value)
