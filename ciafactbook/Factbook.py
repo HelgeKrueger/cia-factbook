@@ -86,7 +86,7 @@ class Factbook:
             return json.load(f)
 
     def get_files(self):
-        files = glob.glob(f"./{self.data_path}/factbook.json-master/**/*.json")
+        files = glob.glob(f"{self.data_path}/factbook.json-master/**/*.json")
 
         if len(files) == 0:
             raise Exception("No data found")
