@@ -6,7 +6,7 @@ import json
 import glob
 import pandas as pd
 
-from converters import *
+from .converters import *
 
 
 class Factbook:

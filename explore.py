@@ -4,7 +4,7 @@ import os
 from rich import print
 from rich.table import Table
 
-from Factbook import Factbook
+from ciafactbook import CiaFactbook
 
 
 def format_entry(value):
@@ -15,7 +15,7 @@ def format_entry(value):
 
 
 def main():
-    factbook = Factbook()
+    factbook = CiaFactbook()
     if not os.path.isdir("data/factbook.json-master"):
         factbook.fetch_factbook()
 
